@@ -210,11 +210,23 @@
 				margin: 0 auto;
 				position: relative;
 			}
+			.artical-action-mid{
+				position: fixed;
+				z-index: 10002;
+				width: 100%;
+				height: 40%;
+				top: 30%;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="root" class="container">
-			<div id="top-nav" class="top-nav">
+
+			<div class="m-artical-action">
+				<div class="artical-action-mid" id="action_mid"></div>
+			</div>
+
+			<div id="top-nav" class="top-nav" style="display: none">
 				<div class="icon-back"></div>
 				<div class="nav-title">返回书架</div>
 			</div>
@@ -254,8 +266,8 @@
 					<li id="next_button">下一章</li>
 				</ul>
 			</div>
-			<div class="nav-pannel-bk"></div>
-			<div class="nav-pannel" id="font-container">
+			<div class="nav-pannel-bk" style="display: none"></div>
+			<div class="nav-pannel" id="font-container" style="display: none">
 				<div class="child-mod">
 					<span>字号</span>
 					<button id="large-font" class="font-size-button">大</button>
@@ -266,9 +278,18 @@
 					<div class="bk-container">
 						<div class="bk-container-current"></div>
 					</div>
+					<div class="bk-container">
+						<div class="bk-container-current"></div>
+					</div>
+					<div class="bk-container">
+						<div class="bk-container-current"></div>
+					</div>
 				</div>
 			</div>
-			<div class="bottom-nav bottom_nav">
+
+			<div class="bottom-nav-bk bottom-nav" style="display: none"></div>
+
+			<div class="bottom-nav bottom_nav" style="display: none">
 				<div class="item menu-button" id="menu_button">
 					<div class="item-warp">
 						<div class="icon-menu"></div>
@@ -323,8 +344,16 @@
                         StorageSetter:StorageSetter
 					}
                 })();
+				var Dom={
+				    top_nav:$('#top-nav'),
+					bottom_nav:$('.bottom-nav')
+				}
+				var Win=$(window);
+				var Doc=$(document);
+
 				function main() {
 					//todo 整个项目的入口函数
+					EventHandlder();
                 }
 
 				function  ReaderModel(){
@@ -336,6 +365,24 @@
                 }
                 function EventHandlder() {
 					//todo 交互的事件绑定
+					//touch
+					//zepto tap
+					//4.0 click 300ms
+					//click tap
+					$('#action_mid').click(function () {
+						if(Dom.top_nav.css('display')=='none'){
+							Dom.bottom_nav.show();
+							Dom.top_nav.show();
+						}else {
+                            Dom.bottom_nav.hide();
+                            Dom.top_nav.hide();
+						}
+                    });
+
+					Win.scroll(function () {
+                        Dom.bottom_nav.hide();
+                        Dom.top_nav.hide();
+                    });
                 }
 
                 main();
