@@ -266,8 +266,8 @@
 					<li id="next_button">下一章</li>
 				</ul>
 			</div>
-			<div class="nav-pannel-bk" style="display: none"></div>
-			<div class="nav-pannel" id="font-container" style="display: none">
+			<div class="nav-pannel-bk font-container" style="display: none"></div>
+			<div class="nav-pannel font-container" id="font-container" style="display: none">
 				<div class="child-mod">
 					<span>字号</span>
 					<button id="large-font" class="font-size-button">大</button>
@@ -346,7 +346,10 @@
                 })();
 				var Dom={
 				    top_nav:$('#top-nav'),
-					bottom_nav:$('.bottom-nav')
+					bottom_nav:$('.bottom-nav'),
+					font_container:$('.font-container'),
+					font_button:$('#font-button')
+
 				}
 				var Win=$(window);
 				var Doc=$(document);
@@ -376,12 +379,28 @@
 						}else {
                             Dom.bottom_nav.hide();
                             Dom.top_nav.hide();
+                            Dom.font_container.hide();
+                            Dom.font_button.removeClass('current');
 						}
+                    });
+					Dom.font_button.click(function () {
+						if (Dom.font_container.css('display')=='none'){
+						    Dom.font_container.show();
+						    Dom.font_button.addClass('current');
+						}else {
+						    Dom.font_container.hide();
+						    Dom.font_button.removeClass('current');
+						}
+                    });
+                    $('night-button').click(function () {
+						//TODO 触发背景切换的事件
                     });
 
 					Win.scroll(function () {
                         Dom.bottom_nav.hide();
                         Dom.top_nav.hide();
+                        Dom.font_container.hide();
+                        Dom.font_button.removeClass('current');
                     });
                 }
 
