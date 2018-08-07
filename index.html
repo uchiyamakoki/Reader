@@ -353,6 +353,13 @@
 				}
 				var Win=$(window);
 				var Doc=$(document);
+				var RootContainer=$('#fition_container');
+				var initFontSize=Util.StorageGetter('font_size');
+				initFontSize=parseInt(initFontSize);
+				if(!initFontSize){
+				    initFontSize=14;
+				}
+				RootContainer.css('font-size',initFontSize);
 
 				function main() {
 					//todo 整个项目的入口函数
@@ -394,6 +401,24 @@
                     });
                     $('night-button').click(function () {
 						//TODO 触发背景切换的事件
+                    });
+
+                    $('#large-font').click(function () {
+                        if (initFontSize>20){
+                            return;
+						}
+						initFontSize+=1;
+						RootContainer.css('font-size',initFontSize);
+						Util.StorageSetter('font_size',initFontSize);
+                    });
+
+                    $('#small-font').click(function () {
+                        if (initFontSize<12){
+                            return;
+                        }
+						initFontSize-=1;
+                        RootContainer.css('font-size',initFontSize);
+                        Util.StorageSetter('font_size',initFontSize);
                     });
 
 					Win.scroll(function () {
