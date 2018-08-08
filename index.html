@@ -339,7 +339,20 @@
                     var StorageSetter=function (key,val) {
 						return localStorage.setItem(prefix+key,val);
                     }
+                    var getBSONP=function (url,callback) {
+						return $.jsonp({
+							url:url,
+							cache:true,
+							callback:'duokan_fiction_chapter',
+							success:function (result) {
+								var data=$.base64.decode(result);
+								var json=decodeURIComponent(escape(data));
+								callback(data);
+                            }
+						});
+                    }
                     return{
+                        getBSONP:getBSONP,
                         StorageGetter:StorageGetter,
                         StorageSetter:StorageSetter
 					}
@@ -363,12 +376,41 @@
 
 				function main() {
 					//todo 整个项目的入口函数
+					var readerModel=ReaderModel();
+					readerModel.init();
 					EventHandlder();
                 }
 
 				function  ReaderModel(){
 				    //todo 实现和阅读器相关的数据交互的方法
-
+					var Chapter_id;
+					var init=function () {
+						getFictionInfo(function () {
+							getCurChapterContent(Chapter_id,function () {
+								//TODO...
+                            })
+                        });
+                    }
+					var getFictionInfo=function (callback) {
+						$.get('data/chapter.json',function(data){
+						    //TODO 获得章节信息之后的回调
+							Chapter_id=data.chapters[1].chapter_id;
+							callback && callback();
+						},'json');
+                    }
+                    var getCurChapterContent=function (chapter_id,data) {
+						$.get('data/data'+chapter_id+'.json',function(data){
+						    if(data.result==0){
+						        var url=data.jsonp;
+								Util.getBSONP(url,function () {
+									callback && callback(data);
+                                });
+							}
+						},'json');
+                    }
+					return{
+					    init:init
+					}
 				}
 				function ReaderBaseFrame() {
 					//todo 渲染基本的UI结构
