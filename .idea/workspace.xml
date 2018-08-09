@@ -17,8 +17,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
-              <caret line="390" column="30" lean-forward="true" selection-start-line="390" selection-start-column="30" selection-end-line="390" selection-end-column="30" />
+            <state relative-caret-position="-1246">
+              <caret line="319" column="36" lean-forward="true" selection-start-line="319" selection-start-column="36" selection-end-line="319" selection-end-column="36" />
               <folding>
                 <element signature="e#1590#5341#2" expanded="true" />
                 <element signature="e#7072#8591#2" expanded="true" />
@@ -53,8 +53,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="758" />
-    <option name="y" value="9" />
+    <option name="x" value="561" />
+    <option name="y" value="48" />
     <option name="width" value="1177" />
     <option name="height" value="1014" />
   </component>
@@ -73,7 +73,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -86,6 +85,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -128,14 +128,15 @@
       <workItem from="1533615887689" duration="871000" />
       <workItem from="1533640237656" duration="1487000" />
       <workItem from="1533703652529" duration="1843000" />
+      <workItem from="1533802575989" duration="4030000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23331000" />
+    <option name="totallyTimeSpent" value="27361000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="758" y="9" width="1177" height="1014" extended-state="0" />
+    <frame x="561" y="48" width="1177" height="1014" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18550475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -376,6 +377,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1590#5341#2" expanded="true" />
+            <element signature="e#7072#8591#2" expanded="true" />
+            <element signature="e#8751#11926#2" expanded="true" />
+            <element signature="e#12067#17946#2" expanded="true" />
+            <element signature="e#18069#20584#2" expanded="true" />
+            <element signature="e#20705#22964#2" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#8;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#div#8;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://E:/组件方式开发 Web App全站（更多视频教程关注微信公众号：Java开发视频教程）/组件开发源码/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -385,8 +407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="390" column="30" lean-forward="true" selection-start-line="390" selection-start-column="30" selection-end-line="390" selection-end-column="30" />
+        <state relative-caret-position="-1246">
+          <caret line="319" column="36" lean-forward="true" selection-start-line="319" selection-start-column="36" selection-end-line="319" selection-end-column="36" />
           <folding>
             <element signature="e#1590#5341#2" expanded="true" />
             <element signature="e#7072#8591#2" expanded="true" />

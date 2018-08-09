@@ -234,31 +234,7 @@
 
 			</div>
 			<div id="fition_container" class="m-read-content">
-				<h4>八百年后</h4>
-				<p>
-					“池瑶，我待你如挚爱，你为何要杀我？”张若尘大吼一声，想前一扑，压得鎏金铸造的床榻“咯吱”一声，猛然坐了起
-					来。
-				</p>
-				<p>
-					发现只是一个梦，张若尘才长长吐出一口气，用衣袖将额头上的汗珠擦干。
-					不！那不是一个梦！
-					他与池瑶公主发生的一切，又怎么可能是一个梦？
-				</p>
-				<p>
-					张若尘本是昆仑界九大帝君之一的“明帝”的独子，年仅十六岁，便以逆天的体质，修炼到天极境大圆满。但是，正在他
-					成为昆仑界年轻一代第一人的时候，却死在自己青梅竹马的未婚妻池瑶公主的手中。
-					池瑶公主，是九大帝君之一“青帝”的女儿。
-					明帝和青帝是最好的至交，张若尘与池瑶公主更是指腹为婚，从小一起长大，一起修炼。一个英姿飒爽，一个美貌绝伦，
-					堪称金童玉女，本来可以成为修炼界的一段佳话。
-					张若尘怎么也料不到，池瑶公主居然会对他出手！
-					死在池瑶公主手中之后，当张若尘再次醒过来，却发现自己已经在八百年之后。
-					曾经的池瑶公主，平定九帝之乱，统一九国，建立第一中央帝国，成为整个昆仑界的主宰——池瑶女皇。
-					八百年前，称雄昆仑界的九帝，彻底的成为过去，消失在历史的长河之中。
-					九帝已死，女皇当立。
-					这个时代，只有一位皇者，那就是池瑶女皇，统御天下，威临八方。
-					“她为何要杀我？她的心怎么可以那么狠，还是说女人的心都如此的狠？”
-					张若尘的眼神锐利，心沉似铁，满腹疑问。但是，却没有人可以帮他解答。
-				</p>
+
 			</div>
 			<div class="m-button-bar">
 				<ul class="u-tab">
@@ -347,7 +323,7 @@
 							success:function (result) {
 								var data=$.base64.decode(result);
 								var json=decodeURIComponent(escape(data));
-								callback(data);
+								callback(json);
                             }
 						});
                     }
@@ -377,18 +353,22 @@
 				function main() {
 					//todo 整个项目的入口函数
 					var readerModel=ReaderModel();
-					readerModel.init();
+					var readerUI=ReaderBaseFrame(RootContainer);
+					readerModel.init(function (data) {
+						readerUI(data);
+                    });
 					EventHandlder();
                 }
 
 				function  ReaderModel(){
 				    //todo 实现和阅读器相关的数据交互的方法
 					var Chapter_id;
-					var init=function () {
+					var init=function (UIcallback) {
 						getFictionInfo(function () {
-							getCurChapterContent(Chapter_id,function () {
+							getCurChapterContent(Chapter_id,function (data) {
 								//TODO...
-                            })
+								UIcallback && UIcallback(data);
+                            });
                         });
                     }
 					var getFictionInfo=function (callback) {
@@ -398,11 +378,11 @@
 							callback && callback();
 						},'json');
                     }
-                    var getCurChapterContent=function (chapter_id,data) {
+                    var getCurChapterContent=function (chapter_id,callback) {
 						$.get('data/data'+chapter_id+'.json',function(data){
 						    if(data.result==0){
 						        var url=data.jsonp;
-								Util.getBSONP(url,function () {
+								Util.getBSONP(url,function (data) {
 									callback && callback(data);
                                 });
 							}
@@ -412,8 +392,19 @@
 					    init:init
 					}
 				}
-				function ReaderBaseFrame() {
+				function ReaderBaseFrame(container) {
 					//todo 渲染基本的UI结构
+					function  parseChapterData(jsonData) {
+						var jsonObj=JSON.parse(jsonData);
+						var html='<h4>'+jsonObj.t+'</h4>';
+						for (var i=0;i<jsonObj.p.length;i++){
+							html+="<p>"+jsonObj.p[i]+'</p>';
+						}
+						return html;
+                    }
+                    return function (data) {
+						container.html(parseChapterData(data));
+                    }
                 }
                 function EventHandlder() {
 					//todo 交互的事件绑定
