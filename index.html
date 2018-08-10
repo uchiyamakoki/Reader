@@ -342,6 +342,8 @@
 				}
 				var Win=$(window);
 				var Doc=$(document);
+                var readerModel;
+                var readerUI;
 				var RootContainer=$('#fition_container');
 				var initFontSize=Util.StorageGetter('font_size');
 				initFontSize=parseInt(initFontSize);
@@ -352,8 +354,8 @@
 
 				function main() {
 					//todo 整个项目的入口函数
-					var readerModel=ReaderModel();
-					var readerUI=ReaderBaseFrame(RootContainer);
+					 readerModel=ReaderModel();
+					readerUI=ReaderBaseFrame(RootContainer);
 					readerModel.init(function (data) {
 						readerUI(data);
                     });
@@ -363,6 +365,7 @@
 				function  ReaderModel(){
 				    //todo 实现和阅读器相关的数据交互的方法
 					var Chapter_id;
+					var ChapterTotal;
 					var init=function (UIcallback) {
 						getFictionInfo(function () {
 							getCurChapterContent(Chapter_id,function (data) {
@@ -375,6 +378,7 @@
 						$.get('data/chapter.json',function(data){
 						    //TODO 获得章节信息之后的回调
 							Chapter_id=data.chapters[1].chapter_id;
+							ChapterTotal=data.chapters.length;
 							callback && callback();
 						},'json');
                     }
@@ -388,8 +392,26 @@
 							}
 						},'json');
                     }
+                    var prevChapter=function (UIcallback) {
+						Chapter_id=parseInt(Chapter_id,10);
+						if(Chapter_id==0){
+						    return;
+						}
+						Chapter_id-=1;
+						getCurChapterContent(Chapter_id,UIcallback);
+                    }
+                    var nextChapter=function (UIcallback) {
+                        Chapter_id=parseInt(Chapter_id,10);
+                        if(Chapter_id==ChapterTotal){
+                            return;
+                        }
+                        Chapter_id+=1;
+                        getCurChapterContent(Chapter_id,UIcallback);
+                    }
 					return{
-					    init:init
+					    init:init,
+                        prevChapter:prevChapter,
+                        nextChapter:nextChapter
 					}
 				}
 				function ReaderBaseFrame(container) {
@@ -459,6 +481,17 @@
                         Dom.top_nav.hide();
                         Dom.font_container.hide();
                         Dom.font_button.removeClass('current');
+                    });
+					
+					$('#prev_button').click(function () {
+						//TODO...获得章节的翻页数据建 把数据拿出来渲染
+						readerModel.prevChapter();
+                    });
+                    $('#next_button').click(function () {
+						//TODO...
+						readerModel.nextChapter(function (data) {
+							readerUI(data);
+                        });
                     });
                 }
 
