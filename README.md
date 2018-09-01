@@ -3,7 +3,7 @@ Web阅读器
 
 展示
 
-![](https://github.com/uchiyamakoki/Reader/tree/blob/master/img/1.png)
+![](https://github.com/uchiyamakoki/Reader/blob/master/img/1.png)
 
 ## 每日笔记
 
