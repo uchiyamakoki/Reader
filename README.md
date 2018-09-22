@@ -18,3 +18,30 @@ Web阅读器
 		<script src="js/jquery.jsonp.js"></script>
 ```
 
+2018.9.22：
+
+将JS代码放在闭包中
+
+``` HTML
+		<script>
+	             （function（）{}）（）；		
+		</script>
+```
+
+再声明一个内部类
+``` HTML
+		<script>
+	             （function（）{
+			var Util=(function(){
+				var StorageGetter=function(key){
+			    return localStorage.getItem(prefix+key);
+			}
+			        var StorageSetter=function(key,val){
+			}
+			})();	
+		}）（）；		
+		</script>
+```
+
+
+
